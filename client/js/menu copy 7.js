@@ -2,13 +2,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const nav = document.createElement("nav");
   nav.innerHTML = `
     <div class="w3-bar w3-theme">
-      <a href="index.html" class="w3-bar-item w3-button logo-link">JustForToday</a>
-      <a href="about.html" class="w3-bar-item w3-button nav-link">About</a>
-      <a href="about.html" class="w3-bar-item w3-button nav-link">todo</a>
-      <a href="about.html" class="w3-bar-item w3-button nav-link">Media</a>
-      <a href="about.html" class="w3-bar-item w3-button nav-link">Meditation</a>
-      <a href="about.html" class="w3-bar-item w3-button nav-link">Stuff</a>
-      <a href="about.html" class="w3-bar-item w3-button nav-link">Day Reflection</a>
+      <a href="index.html" class="w3-bar-item w3-button w3-mobile logo-link">JustForToday</a>
+      <a href="about.html" class="w3-bar-item w3-button w3-mobile">About</a>
+      <a href="about.html" class="w3-bar-item w3-button w3-mobile">todo</a>
+      <a href="about.html" class="w3-bar-item w3-button w3-mobile">Media</a>
+      <a href="about.html" class="w3-bar-item w3-button w3-mobile">Meditation</a>
+      <a href="about.html" class="w3-bar-item w3-button w3-mobile">Stuff</a>
+      <a href="about.html" class="w3-bar-item w3-button w3-mobile">Day Reflection</a>
       <a href="javascript:void(0);" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" id="navToggle">
         <span id="navIcon">&#9776;</span>
       </a>
@@ -37,7 +37,6 @@ document.addEventListener("DOMContentLoaded", () => {
       padding: 0;
       margin: 0;
       width: 100%;
-      box-sizing: border-box;
     }
     .w3-bar .w3-bar-item {
       float: left;
@@ -51,13 +50,11 @@ document.addEventListener("DOMContentLoaded", () => {
       background: none;
       outline: none;
       transition: background 0.2s;
-      cursor: pointer;
     }
     .w3-bar .logo-link {
       font-weight: bold;
       color: #04AA6D;
       font-size: 20px;
-      letter-spacing: 1px;
     }
     .w3-bar .w3-bar-item:hover, .nav-overlay-content .w3-bar-item:hover {
       background-color: #04AA6D;
@@ -70,25 +67,28 @@ document.addEventListener("DOMContentLoaded", () => {
       background-color: #282A35 !important;
       color: #f1f1f1 !important;
     }
+    .w3-mobile {
+      display: block;
+      width: auto;
+      float: none;
+    }
+    /* Overlay styles */
     .nav-overlay {
       position: fixed;
       top: 0;
-      left: 0;
+      left: 100vw;
       width: 100vw;
-      /* Leave 60px for footer */
-      height: calc(100vh - 60px);
+      height: 100vh;
       background: rgba(40,42,53,0.98);
       z-index: 9999;
-      display: none;
+      transition: left 0.4s cubic-bezier(.4,0,.2,1);
+      display: flex;
       align-items: center;
       justify-content: center;
-      transition: opacity 0.3s;
-      opacity: 0;
       pointer-events: none;
     }
     .nav-overlay.open {
-      display: flex;
-      opacity: 1;
+      left: 0;
       pointer-events: auto;
     }
     .nav-overlay-content {
@@ -137,24 +137,21 @@ document.addEventListener("DOMContentLoaded", () => {
       color: #fff;
     }
     @media (max-width: 800px) {
-      .w3-bar .nav-link {
+      .w3-bar .w3-bar-item:not(.logo-link):not(.w3-right) {
         display: none;
       }
       .w3-bar .w3-right {
         display: block !important;
-      }
-      .nav-overlay {
-        display: none;
-      }
-      .nav-overlay.open {
-        display: flex;
       }
     }
     @media (min-width: 801px) {
       .nav-overlay {
         display: none !important;
       }
-      .w3-bar .nav-link {
+      .w3-bar-block {
+        display: none !important;
+      }
+      .w3-bar .w3-bar-item {
         display: block;
       }
       .w3-bar .w3-right {
