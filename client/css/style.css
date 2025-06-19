@@ -1,0 +1,30 @@
+/* body {
+  font-family: Arial, sans-serif;
+  max-width: 600px;
+  margin: auto;
+  padding: 1em;
+  line-height: 1.6;
+}
+
+
+ */
+
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  gap: 1em;
+}
+
+nav a {
+  text-decoration: none;
+  /* color: #333; */
+}
+
+/* article {
+  margin-top: 1em;
+  padding: 1em;
+  background: #f9f9f9;
+  border-left: 4px solid #ccc;
+} */
