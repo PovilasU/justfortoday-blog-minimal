@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Guided meditation and mindfulness resources for your daily practice."
+    />
+    <title>Meditation | Just For Today Blog</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/water.min.css" />
+    <style>
+      .timer-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5em;
+        margin-bottom: 1em;
+      }
+      .timer-buttons button {
+        flex: 1 1 80px;
+        min-width: 80px;
+        padding: 0.5em 1em;
+        font-size: 1em;
+        cursor: pointer;
+      }
+      .controls {
+        margin-top: 1em;
+        display: flex;
+        gap: 1em;
+      }
+      .timer-display {
+        margin-top: 1em;
+        font-size: 1.2em;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Meditation</h1>
+    <p>
+      Welcome to your meditation space. Select a timer and begin your session.
+    </p>
+    <section>
+      <h2>About Meditation</h2>
+      <p>
+        Meditation is a practice that helps you focus your mind, calm your
+        thoughts, and connect with the present moment. Regular meditation can
+        reduce stress, improve emotional well-being, and increase
+        self-awareness. Whether you are new to meditation or have practiced for
+        years, taking a few minutes each day to sit quietly and breathe deeply
+        can bring clarity and peace to your life.
+      </p>
+      <p>
+        There are many ways to meditate, from guided breathing exercises to
+        simply observing your thoughts without judgment. The most important
+        thing is to find a comfortable position, relax your body, and allow
+        yourself to be present. Remember, meditation is not about stopping your
+        thoughts, but about noticing them and gently returning your attention to
+        your breath or a point of focus.
+      </p>
+    </section>
+    <section>
+      <div class="timer-buttons">
+        <button data-min="1">1 min</button>
+        <button data-min="3">3 min</button>
+        <button data-min="5">5 min</button>
+        <button data-min="10">10 min</button>
+        <button data-min="15">15 min</button>
+        <button data-min="20">20 min</button>
+        <button data-min="30">30 min</button>
+        <button data-min="45">45 min</button>
+        <button data-min="60">60 min</button>
+      </div>
+      <div class="controls">
+        <button id="stop-btn">Stop</button>
+        <button id="mute-btn">Mute</button>
+      </div>
+      <div class="timer-display" id="timer-display"></div>
+      <audio id="meditation-audio" preload="none">
+        <source
+          src="https://nextjs-tiksiandien.netlify.app/Indian_Flute_Meditation_Music.mp3"
+          type="audio/mpeg"
+        />
+        Your browser does not support the audio element.
+      </audio>
+      <audio id="timer-sound" preload="auto">
+        <source
+          src="https://cdn.pixabay.com/audio/2022/07/26/audio_124bfae3c3.mp3"
+          type="audio/mpeg"
+        />
+        <!-- Free bell sound from Pixabay, you can replace with your own -->
+      </audio>
+    </section>
+
+    <script>
+      const audio = document.getElementById("meditation-audio");
+      const timerSound = document.getElementById("timer-sound");
+      const timerDisplay = document.getElementById("timer-display");
+      const stopBtn = document.getElementById("stop-btn");
+      const muteBtn = document.getElementById("mute-btn");
+      let timer = null;
+      let remaining = 0;
+      let muted = false;
+
+      function formatTime(sec) {
+        const m = Math.floor(sec / 60);
+        const s = sec % 60;
+        return `${m}:${s.toString().padStart(2, "0")}`;
+      }
+
+      function startTimer(minutes) {
+        clearInterval(timer);
+        audio.pause();
+        audio.currentTime = 0;
+        audio.muted = muted;
+        audio.load(); // ensure not preloaded
+        audio.play();
+        remaining = minutes * 60;
+        timerDisplay.textContent = `Time left: ${formatTime(remaining)}`;
+        timer = setInterval(() => {
+          remaining--;
+          timerDisplay.textContent = `Time left: ${formatTime(remaining)}`;
+          if (remaining <= 0) {
+            clearInterval(timer);
+            audio.pause();
+            audio.currentTime = 0;
+            timerDisplay.textContent = "Session complete!";
+            timerSound.play();
+          }
+        }, 1000);
+      }
+
+      function stopAll() {
+        clearInterval(timer);
+        audio.pause();
+        audio.currentTime = 0;
+        timerDisplay.textContent = "";
+      }
+
+      function muteAll() {
+        muted = !muted;
+        audio.muted = muted;
+        muteBtn.textContent = muted ? "Unmute" : "Mute";
+      }
+
+      document.querySelectorAll(".timer-buttons button").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          startTimer(Number(btn.dataset.min));
+        });
+      });
+
+      stopBtn.addEventListener("click", stopAll);
+      muteBtn.addEventListener("click", muteAll);
+
+      // If user changes timer, restart music and timer
+      // (handled by startTimer above)
+    </script>
+    <script src="js/menu.js"></script>
+  </body>
+</html>

@@ -4,9 +4,10 @@ document.addEventListener("DOMContentLoaded", () => {
     <div class="w3-bar w3-theme">
       <a href="index.html" class="w3-bar-item w3-button logo-link">JustForToday</a>
       <a href="about.html" class="w3-bar-item w3-button nav-link">About</a>
-      <a href="about.html" class="w3-bar-item w3-button nav-link">todo</a>
-      <a href="about.html" class="w3-bar-item w3-button nav-link">Media</a>
-      <a href="about.html" class="w3-bar-item w3-button nav-link">Meditation</a>
+      <a href="todo.html" class="w3-bar-item w3-button nav-link">Todo</a>
+      <a href="media.html" class="w3-bar-item w3-button nav-link">Media</a>
+      <a href="meditation.html" class="w3-bar-item w3-button nav-link">Meditation</a>
+      <a href="help.html" class="w3-bar-item w3-button nav-link">Help</a>
       <a href="about.html" class="w3-bar-item w3-button nav-link">Stuff</a>
       <a href="reflection.html" class="w3-bar-item w3-button nav-link">Day Reflection</a>
       <button type="button" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" id="navToggle" aria-label="Open menu">
@@ -18,11 +19,12 @@ document.addEventListener("DOMContentLoaded", () => {
         <button class="nav-close" aria-label="Close menu">&times;</button>
         <a href="index.html" class="w3-bar-item w3-button">Home</a>
         <a href="about.html" class="w3-bar-item w3-button">About</a>
-        <a href="about.html" class="w3-bar-item w3-button">todo</a>
-        <a href="about.html" class="w3-bar-item w3-button">Media</a>
-        <a href="about.html" class="w3-bar-item w3-button">Meditation</a>
+        <a href="todo.html" class="w3-bar-item w3-button">Todo</a>
+        <a href="media.html" class="w3-bar-item w3-button">Media</a>
+        <a href="meditation.html" class="w3-bar-item w3-button">Meditation</a>
+        <a href="help.html" class="w3-bar-item w3-button">help</a>
         <a href="about.html" class="w3-bar-item w3-button">Stuff</a>
-        <a href="about.html" class="w3-bar-item w3-button">Day Reflection</a>
+        <a href="reflection.html" class="w3-bar-item w3-button">Day Reflection</a>
       </div>
     </div>
   `;
