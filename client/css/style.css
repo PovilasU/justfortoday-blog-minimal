@@ -10,6 +10,10 @@
  */
 
 
+
+
+
+/* Navigation menu  */
 nav ul {
   list-style: none;
   padding: 0;
@@ -19,84 +23,141 @@ nav ul {
 
 nav a {
   text-decoration: none;
-  /* color: #333; */
 }
 
-/* article {
-  margin-top: 1em;
-  padding: 1em;
-  background: #f9f9f9;
-  border-left: 4px solid #ccc;
-} */
 
-
-/*   nav style
- */
-
-   /* nav {
-  width: 100%;
-  background: #f0f0f0;
-  margin-bottom: 1em;
-}
-.main-nav {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  padding: 0.5em 0;
-  margin: 0;
-  list-style: none;
-  gap: 0.5em;
-}
-.main-nav li {
-  flex: 1 1 100px;
-  text-align: center;
-}
-.main-nav a {
-  display: block;
-  padding: 0.5em 1em;
-  text-decoration: none;
-  color: #333;
-  border-radius: 4px;
-  transition: background 0.2s, color 0.2s;
-}
-.main-nav a:hover {
-  background: #e0e0e0;
-}
-@media (max-width: 600px) {
-  .main-nav {
-    flex-direction: column;
-    gap: 0;
-  }
-  .main-nav li {
-    flex: 1 1 auto;
-  }
-  .main-nav a {
-    padding: 1em;
-    border-bottom: 1px solid #ddd;
-  }
-  .main-nav li:last-child a {
-    border-bottom: none;
-  }
-} */
-
-/* Dark mode support */
-/* @media (prefers-color-scheme: dark) {
-  nav {
-    background: #222;
-  }
-  .main-nav a {
-    color: #eee;
-    background: transparent;
-  }
-  .main-nav a:hover {
-    background: #333;
-  }
-  .main-nav a:active {
-    background: #444;
-  }
-  @media (max-width: 600px) {
-    .main-nav a {
-      border-bottom: 1px solid #444;
+.w3-bar {
+      overflow: hidden;
+      background-color: #282A35;
+      font-family: Verdana,sans-serif;
+      padding: 0;
+      margin: 0;
+      width: 100%;
+      box-sizing: border-box;
     }
-  }
-} */
+    .w3-bar .w3-bar-item {
+      float: left;
+      display: block;
+      color: #f1f1f1;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+      font-size: 17px;
+      border: none;
+      background: none;
+      outline: none;
+      transition: background 0.2s;
+      cursor: pointer;
+    }
+    .w3-bar .logo-link {
+      font-weight: bold;
+      color: #04AA6D;
+      font-size: 20px;
+      letter-spacing: 1px;
+    }
+    .w3-bar .w3-bar-item:hover, .nav-overlay-content .w3-bar-item:hover {
+      background-color: #04AA6D;
+      color: white;
+    }
+    .w3-bar .w3-right {
+      float: right !important;
+    }
+    .w3-theme {
+      background-color: #282A35 !important;
+      color: #f1f1f1 !important;
+    }
+    .nav-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      /* Leave 60px for footer */
+      height: calc(100vh - 60px);
+      background: rgba(40,42,53,0.98);
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.3s;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .nav-overlay.open {
+      display: flex;
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .nav-overlay-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 90vw;
+      max-width: 400px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .nav-overlay-content .nav-close {
+      position: fixed;
+      top: 1em;
+      right: 1em;
+      background: none;
+      border: none;
+      color: #f1f1f1;
+      font-size: 2.2em;
+      cursor: pointer;
+      z-index: 10001;
+      line-height: 1;
+      padding: 0;
+      transition: color 0.2s;
+    }
+    .nav-overlay-content .nav-close:hover {
+      color: #04AA6D;
+    }
+    .nav-overlay-content .w3-bar-item {
+      color: #f1f1f1;
+      font-size: 1.2em;
+      padding: 0.8em 0;
+      background: none;
+      border: none;
+      width: 100%;
+      text-align: center;
+      transition: background 0.2s;
+      border-bottom: 1px solid #333;
+      margin: 0;
+    }
+    .nav-overlay-content .w3-bar-item:last-child {
+      border-bottom: none;
+    }
+    .nav-overlay-content .w3-bar-item:hover {
+      background: #04AA6D;
+      color: #fff;
+    }
+    @media (max-width: 800px) {
+      .w3-bar .nav-link {
+        display: none;
+      }
+      .w3-bar .w3-right {
+        display: block !important;
+      }
+      .nav-overlay {
+        display: none;
+      }
+      .nav-overlay.open {
+        display: flex;
+      }
+    }
+    @media (min-width: 801px) {
+      .nav-overlay {
+        display: none !important;
+      }
+      .w3-bar .nav-link {
+        display: block;
+      }
+      .w3-bar .w3-right {
+        display: none !important;
+      }
+    }
+    body.nav-open {
+      overflow: hidden;
+    }
+/* ./Navigation menu */
