@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
       <a href="about.html" class="w3-bar-item w3-button nav-link">Media</a>
       <a href="about.html" class="w3-bar-item w3-button nav-link">Meditation</a>
       <a href="about.html" class="w3-bar-item w3-button nav-link">Stuff</a>
-      <a href="about.html" class="w3-bar-item w3-button nav-link">Day Reflection</a>
+      <a href="reflection.html" class="w3-bar-item w3-button nav-link">Day Reflection</a>
       <button type="button" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" id="navToggle" aria-label="Open menu">
         <span id="navIcon">&#9776;</span>
       </button>
@@ -16,6 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
     <div id="navOverlay" class="nav-overlay">
       <div class="nav-overlay-content">
         <button class="nav-close" aria-label="Close menu">&times;</button>
+        <a href="index.html" class="w3-bar-item w3-button">Home</a>
         <a href="about.html" class="w3-bar-item w3-button">About</a>
         <a href="about.html" class="w3-bar-item w3-button">todo</a>
         <a href="about.html" class="w3-bar-item w3-button">Media</a>
@@ -26,13 +27,6 @@ document.addEventListener("DOMContentLoaded", () => {
     </div>
   `;
   document.body.prepend(nav);
-
-  // Add styles for overlay menu
-  // const style = document.createElement("style");
-  // style.textContent = `
-
-  // `;
-  // document.head.appendChild(style);
 
   // Toggle overlay menu and icon on mobile
   const navToggle = document.getElementById("navToggle");
