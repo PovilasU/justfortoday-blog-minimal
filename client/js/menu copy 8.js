@@ -101,7 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
       position: relative;
     }
     .nav-overlay-content .nav-close {
-      position: fixed;
+      position: absolute;
       top: 1em;
       right: 1em;
       background: none;
