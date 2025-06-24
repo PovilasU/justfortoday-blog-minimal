@@ -9,9 +9,9 @@ document.addEventListener("DOMContentLoaded", () => {
       <a href="about.html" class="w3-bar-item w3-button nav-link">Meditation</a>
       <a href="about.html" class="w3-bar-item w3-button nav-link">Stuff</a>
       <a href="about.html" class="w3-bar-item w3-button nav-link">Day Reflection</a>
-      <a href="javascript:void(0);" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" id="navToggle">
+      <button type="button" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" id="navToggle" aria-label="Open menu">
         <span id="navIcon">&#9776;</span>
-      </a>
+      </button>
     </div>
     <div id="navOverlay" class="nav-overlay">
       <div class="nav-overlay-content">
@@ -28,11 +28,11 @@ document.addEventListener("DOMContentLoaded", () => {
   document.body.prepend(nav);
 
   // Add styles for overlay menu
-  const style = document.createElement("style");
-  style.textContent = `
-    
-  `;
-  document.head.appendChild(style);
+  // const style = document.createElement("style");
+  // style.textContent = `
+
+  // `;
+  // document.head.appendChild(style);
 
   // Toggle overlay menu and icon on mobile
   const navToggle = document.getElementById("navToggle");
