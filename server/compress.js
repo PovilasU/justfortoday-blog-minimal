@@ -6,17 +6,23 @@ const srcDir = path.resolve(__dirname, "../client");
 const outDir = path.resolve(__dirname, "../client/dist");
 
 const compressFile = (srcPath, baseDir, outDir) => {
-  const relativePath = path.relative(baseDir, srcPath);
-  const outFilePath = path.join(outDir, `${relativePath}.br`);
+  const relativePath = path.relative(baseDir, srcPath); // e.g., css/style.css
+  const outDirPath = path.join(outDir, relativePath); // dist/css/style.css
 
   // Ensure the output directory exists
-  fs.mkdirSync(path.dirname(outFilePath), { recursive: true });
+  fs.mkdirSync(path.dirname(outDirPath), { recursive: true });
 
   const fileContents = fs.readFileSync(srcPath);
-  const brotlied = zlib.brotliCompressSync(fileContents);
-  fs.writeFileSync(outFilePath, brotlied);
 
-  console.log(`Compressed: ${srcPath} -> ${outFilePath}`);
+  // Gzip compression
+  const gzipped = zlib.gzipSync(fileContents);
+  fs.writeFileSync(`${outDirPath}.gz`, gzipped);
+
+  // Brotli compression
+  // const brotlied = zlib.brotliCompressSync(fileContents);
+  // fs.writeFileSync(`${outDirPath}.br`, brotlied);
+
+  console.log(`Compressed: ${srcPath} -> ${relativePath}.gz and .br`);
 };
 
 const walk = (dir) => {
@@ -31,5 +37,6 @@ const walk = (dir) => {
   });
 };
 
+// Ensure dist directory exists
 fs.mkdirSync(outDir, { recursive: true });
 walk(srcDir);
