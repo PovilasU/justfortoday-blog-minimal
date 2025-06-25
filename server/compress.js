@@ -5,20 +5,18 @@ const zlib = require("zlib");
 const srcDir = path.resolve(__dirname, "../client");
 const outDir = path.resolve(__dirname, "../client/dist");
 
-const compressFile = (srcPath, outDir) => {
-  const fileName = path.basename(srcPath);
+const compressFile = (srcPath, baseDir, outDir) => {
+  const relativePath = path.relative(baseDir, srcPath);
+  const outFilePath = path.join(outDir, `${relativePath}.br`);
+
+  // Ensure the output directory exists
+  fs.mkdirSync(path.dirname(outFilePath), { recursive: true });
 
   const fileContents = fs.readFileSync(srcPath);
-
-  // Gzip
-  const gzipped = zlib.gzipSync(fileContents);
-  fs.writeFileSync(path.join(outDir, `${fileName}.gz`), gzipped);
-
-  // Brotli
   const brotlied = zlib.brotliCompressSync(fileContents);
-  fs.writeFileSync(path.join(outDir, `${fileName}.br`), brotlied);
+  fs.writeFileSync(outFilePath, brotlied);
 
-  console.log(`Compressed: ${srcPath} -> ${fileName}.gz/.br`);
+  console.log(`Compressed: ${srcPath} -> ${outFilePath}`);
 };
 
 const walk = (dir) => {
@@ -28,7 +26,7 @@ const walk = (dir) => {
     if (fs.lstatSync(srcFull).isDirectory()) {
       walk(srcFull);
     } else if (/\.(html|js|css)$/.test(file)) {
-      compressFile(srcFull, outDir);
+      compressFile(srcFull, srcDir, outDir);
     }
   });
 };
