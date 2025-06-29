@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="lt">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Media page with audio book links and resources."
+      content="Medijos puslapis su audioknygų nuorodomis ir resursais."
     />
-    <title>Media | Just For Today Blog</title>
+    <title>Medijos | TiksiŠiandien</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/water.min.css" />
@@ -25,6 +25,12 @@
         color: #04aa6d;
         margin-bottom: 0.5em;
       }
+      .media-section h3 {
+        margin-top: 2em;
+        color: #04aa6d;
+        border-bottom: 2px solid #04aa6d;
+        padding-bottom: 0.3em;
+      }
       .media-section h5 {
         margin-top: 1.5em;
         color: #282a35;
@@ -37,7 +43,7 @@
       .media-list {
         list-style: none;
         padding: 0;
-        margin: 1.5em 0 1em 0;
+        margin: 1em 0 1em 0;
       }
       .media-list li {
         background: var(--surface, #f7f7f7);
@@ -90,8 +96,10 @@
         .media-section {
           background: #23272e;
         }
-        .media-section h1 {
+        .media-section h1,
+        .media-section h3 {
           color: #7fffd4;
+          border-color: #7fffd4;
         }
         .media-section h5 {
           color: #e0e0e0;
@@ -117,15 +125,30 @@
   </head>
   <body>
     <div class="media-section">
-      <h1>Media Library</h1>
-      <h5>🎧 Audioknyga: Nikodemas Agiorietis – „Nematoma kova“</h5>
+      <h1>Medijų biblioteka</h1>
       <p>
-        Žemiau rasite nuorodas į „Marijos radijo“ svetainėje publikuotą
-        audioknygą <strong>„Nematoma kova“</strong>. Klausykite dalis iš eilės
-        ir sekite savo progresą pažymėdami perklausytas dalis.
+        Žemiau rasite nuorodas į audioknygas ir kitą naudingą medžiagą.
+        Klausykitės ir sekite savo pažangą pažymėdami perklausytas dalis.
       </p>
-      <div class="media-progress" id="media-progress"></div>
-      <ul id="media-list" class="media-list"></ul>
+
+      <!-- Pirmoji knyga -->
+      <h3>📚 Nikodemas Agiorietis – „Nematoma kova“</h3>
+      <p>
+        Audioknyga iš „Marijos radijo“ svetainės. Klausykite dalis iš eilės ir
+        pažymėkite perklausytas.
+      </p>
+      <div class="media-progress" id="media-progress-nematoma"></div>
+      <ul id="media-list-nematoma" class="media-list"></ul>
+
+      <!-- Čia galima pridėti daugiau knygų grupių -->
+      <!-- Pvz. -->
+      <!--
+      <h3>📚 Knygos pavadinimas 2</h3>
+      <p>Knygos aprašymas...</p>
+      <div class="media-progress" id="media-progress-knyga2"></div>
+      <ul id="media-list-knyga2" class="media-list"></ul>
+      -->
+
       <p>
         <small>
           Šaltinis:
@@ -134,17 +157,16 @@
             target="_blank"
             rel="noopener noreferrer"
           >
-            marijosradijas.lt
-          </a>
-          . Visos teisės priklauso Marijos radijui. Šiame puslapyje pateiktos
-          tik nuorodos – vartotojo patogumui. Turinys nėra kopijuojamas ar
-          talpinamas vietoje.
+            marijosradijas.lt </a
+          >. Visos teisės priklauso Marijos radijui. Čia pateiktos tik nuorodos
+          – vartotojo patogumui. Turinys nėra kopijuojamas ar talpinamas
+          vietoje.
         </small>
       </p>
     </div>
     <script>
-      // IDs from your example
-      const recordings = [
+      // Audioknygos "Nematoma kova" įrašų ID (apversti, kad rodyti nuo pirmos dalies)
+      const nematomaKovaRecordings = [
         276761, 276758, 276496, 276406, 276400, 276395, 276373, 276384, 274421,
         274375, 274372, 275383, 273932, 273886, 273883, 273874, 273567, 273397,
         273394, 273385, 273078, 274706, 274773, 274937, 275011, 272589, 272465,
@@ -152,43 +174,48 @@
         270931, 270928, 270919, 270612, 274577, 270446, 270443, 270434, 270127,
         270010, 269961, 269949, 269642, 269525, 269473, 269464, 269157, 269040,
         268991, 268988, 268979, 268672, 268555, 268506,
-      ];
-      const recordingsReversed = [...recordings].reverse();
-      const STORAGE_KEY = "nematoma-kova-checked";
-      let checked = {};
+      ].reverse();
 
-      // Load checked state from localStorage
+      const STORAGE_KEY_NEMATOMA = "nematoma-kova-checked";
+      let checkedNematoma = {};
+
+      // Išsaugotų pažymėtų dalių įkėlimas iš localStorage
       try {
-        const saved = localStorage.getItem(STORAGE_KEY);
-        if (saved) checked = JSON.parse(saved);
+        const saved = localStorage.getItem(STORAGE_KEY_NEMATOMA);
+        if (saved) checkedNematoma = JSON.parse(saved);
       } catch {}
 
-      function saveChecked() {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(checked));
+      function saveCheckedNematoma() {
+        localStorage.setItem(
+          STORAGE_KEY_NEMATOMA,
+          JSON.stringify(checkedNematoma)
+        );
       }
 
-      function updateProgress() {
-        const total = recordingsReversed.length;
-        const done = recordingsReversed.filter((id) => checked[id]).length;
+      function updateProgressNematoma() {
+        const total = nematomaKovaRecordings.length;
+        const done = nematomaKovaRecordings.filter(
+          (id) => checkedNematoma[id]
+        ).length;
         const percent = total === 0 ? 100 : Math.round((done / total) * 100);
         document.getElementById(
-          "media-progress"
+          "media-progress-nematoma"
         ).textContent = `Progresas: ${done} iš ${total} (${percent}%)`;
       }
 
-      const list = document.getElementById("media-list");
-      list.innerHTML = "";
-      recordingsReversed.forEach((id, index) => {
+      const listNematoma = document.getElementById("media-list-nematoma");
+      listNematoma.innerHTML = "";
+      nematomaKovaRecordings.forEach((id, index) => {
         const li = document.createElement("li");
         const label = document.createElement("label");
         const checkbox = document.createElement("input");
         checkbox.type = "checkbox";
         checkbox.className = "media-checkbox";
-        checkbox.checked = !!checked[id];
+        checkbox.checked = !!checkedNematoma[id];
         checkbox.addEventListener("change", () => {
-          checked[id] = checkbox.checked;
-          saveChecked();
-          updateProgress();
+          checkedNematoma[id] = checkbox.checked;
+          saveCheckedNematoma();
+          updateProgressNematoma();
         });
         label.appendChild(checkbox);
         const link = document.createElement("a");
@@ -198,10 +225,12 @@
         link.textContent = `${index + 1} dalis`;
         label.appendChild(link);
         li.appendChild(label);
-        list.appendChild(li);
+        listNematoma.appendChild(li);
       });
 
-      updateProgress();
+      updateProgressNematoma();
+
+      // Ateityje čia galima pridėti kitų audioknygų panašius blokus su savo ID ir localStorage raktų
     </script>
     <script src="js/menu.js"></script>
   </body>
