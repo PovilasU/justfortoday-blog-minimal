@@ -9,17 +9,10 @@ document.addEventListener("DOMContentLoaded", () => {
   <a href="meditation.html" class="w3-bar-item w3-button nav-link">Meditacija</a>
   <a href="help.html" class="w3-bar-item w3-button nav-link">Pagalba</a>
   <a href="reflection.html" class="w3-bar-item w3-button nav-link">Savianalizė</a>
-
-  <!-- Desktop-only Prisijungti -->
-  <a href="login.html" class="w3-bar-item w3-button w3-right w3-green w3-round login-topbar">Prisijungti</a>
-
-  <!-- Burger icon for mobile -->
   <button type="button" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" id="navToggle" aria-label="Atidaryti meniu">
     <span id="navIcon">&#9776;</span>
   </button>
 </div>
-
-<!-- Overlay menu for mobile -->
 <div id="navOverlay" class="nav-overlay">
   <div class="nav-overlay-content">
     <button class="nav-close" aria-label="Uždaryti meniu">&times;</button>
@@ -30,13 +23,9 @@ document.addEventListener("DOMContentLoaded", () => {
     <a href="meditation.html" class="w3-bar-item w3-button">Meditacija</a>
     <a href="help.html" class="w3-bar-item w3-button">Pagalba</a>
     <a href="reflection.html" class="w3-bar-item w3-button">Savianalizė</a>
-
-    <!-- Mobile-only Prisijungti -->
-    <a href="login.html" class="w3-bar-item w3-button login-overlay">Prisijungti</a>
   </div>
 </div>
-`;
-
+  `;
   document.body.prepend(nav);
 
   // Toggle overlay menu and icon on mobile
