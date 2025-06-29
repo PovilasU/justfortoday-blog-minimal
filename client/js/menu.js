@@ -1,32 +1,30 @@
 document.addEventListener("DOMContentLoaded", () => {
   const nav = document.createElement("nav");
   nav.innerHTML = `
-    <div class="w3-bar w3-theme">
-      <a href="index.html" class="w3-bar-item w3-button logo-link">JustForToday</a>
-      <a href="about.html" class="w3-bar-item w3-button nav-link">About</a>
-      <a href="todo.html" class="w3-bar-item w3-button nav-link">Todo</a>
-      <a href="media.html" class="w3-bar-item w3-button nav-link">Media</a>
-      <a href="meditation.html" class="w3-bar-item w3-button nav-link">Meditation</a>
-      <a href="help.html" class="w3-bar-item w3-button nav-link">Help</a>
-      <a href="about.html" class="w3-bar-item w3-button nav-link">Stuff</a>
-      <a href="reflection.html" class="w3-bar-item w3-button nav-link">Day Reflection</a>
-      <button type="button" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" id="navToggle" aria-label="Open menu">
-        <span id="navIcon">&#9776;</span>
-      </button>
-    </div>
-    <div id="navOverlay" class="nav-overlay">
-      <div class="nav-overlay-content">
-        <button class="nav-close" aria-label="Close menu">&times;</button>
-        <a href="index.html" class="w3-bar-item w3-button">Home</a>
-        <a href="about.html" class="w3-bar-item w3-button">About</a>
-        <a href="todo.html" class="w3-bar-item w3-button">Todo</a>
-        <a href="media.html" class="w3-bar-item w3-button">Media</a>
-        <a href="meditation.html" class="w3-bar-item w3-button">Meditation</a>
-        <a href="help.html" class="w3-bar-item w3-button">help</a>
-        <a href="about.html" class="w3-bar-item w3-button">Stuff</a>
-        <a href="reflection.html" class="w3-bar-item w3-button">Day Reflection</a>
-      </div>
-    </div>
+<div class="w3-bar w3-theme">
+  <a href="index.html" class="w3-bar-item w3-button logo-link">TikŠiandien</a>
+  <a href="about.html" class="w3-bar-item w3-button nav-link">Apie</a>
+  <a href="todo.html" class="w3-bar-item w3-button nav-link">Užduotys</a>
+  <a href="media.html" class="w3-bar-item w3-button nav-link">Medijos</a>
+  <a href="meditation.html" class="w3-bar-item w3-button nav-link">Meditacija</a>
+  <a href="help.html" class="w3-bar-item w3-button nav-link">Pagalba</a>
+  <a href="reflection.html" class="w3-bar-item w3-button nav-link">Savianalizė</a>
+  <button type="button" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" id="navToggle" aria-label="Atidaryti meniu">
+    <span id="navIcon">&#9776;</span>
+  </button>
+</div>
+<div id="navOverlay" class="nav-overlay">
+  <div class="nav-overlay-content">
+    <button class="nav-close" aria-label="Uždaryti meniu">&times;</button>
+    <a href="index.html" class="w3-bar-item w3-button">Pagrindinis</a>
+    <a href="about.html" class="w3-bar-item w3-button">Apie</a>
+    <a href="todo.html" class="w3-bar-item w3-button">Užduotys</a>
+    <a href="media.html" class="w3-bar-item w3-button">Medijos</a>
+    <a href="meditation.html" class="w3-bar-item w3-button">Meditacija</a>
+    <a href="help.html" class="w3-bar-item w3-button">Pagalba</a>
+    <a href="reflection.html" class="w3-bar-item w3-button">Savianalizė</a>
+  </div>
+</div>
   `;
   document.body.prepend(nav);
 

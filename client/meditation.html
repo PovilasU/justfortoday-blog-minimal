@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="lt">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Guided meditation and mindfulness resources for your daily practice."
+      content="Vadovaujamos meditacijos ir sąmoningumo ištekliai tavo kasdienei praktikai."
     />
-    <title>Meditation | Just For Today Blog</title>
+    <title>Meditacija | Tiesiog šiandien tinklaraštis</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/water.min.css" />
@@ -38,27 +38,27 @@
     </style>
   </head>
   <body>
-    <h1>Meditation</h1>
+    <h1>Meditacija</h1>
     <p>
-      Welcome to your meditation space. Select a timer and begin your session.
+      Sveiki atvykę į savo meditacijos erdvę. Pasirinkite laikmatį ir pradėkite
+      sesiją.
     </p>
     <section>
-      <h2>About Meditation</h2>
+      <h2>Apie meditaciją</h2>
       <p>
-        Meditation is a practice that helps you focus your mind, calm your
-        thoughts, and connect with the present moment. Regular meditation can
-        reduce stress, improve emotional well-being, and increase
-        self-awareness. Whether you are new to meditation or have practiced for
-        years, taking a few minutes each day to sit quietly and breathe deeply
-        can bring clarity and peace to your life.
+        Meditacija yra praktika, padedanti sutelkti mintis, nuraminti protą ir
+        susijungti su dabartimi. Reguliari meditacija gali sumažinti stresą,
+        pagerinti emocinę savijautą ir padidinti savęs pažinimą. Nesvarbu, ar
+        esate pradedantysis, ar jau metų metus praktikuojate, kelių minučių
+        kasdienė tyla ir gilus kvėpavimas atneša aiškumo ir ramybės į jūsų
+        gyvenimą.
       </p>
       <p>
-        There are many ways to meditate, from guided breathing exercises to
-        simply observing your thoughts without judgment. The most important
-        thing is to find a comfortable position, relax your body, and allow
-        yourself to be present. Remember, meditation is not about stopping your
-        thoughts, but about noticing them and gently returning your attention to
-        your breath or a point of focus.
+        Medituoti galima įvairiai – nuo vedamų kvėpavimo pratimų iki minties
+        stebėjimo be vertinimo. Svarbiausia rasti patogią poziciją,
+        atsipalaiduoti ir būti čia bei dabar. Atminkite, meditacija nėra minties
+        sustabdymas, o jų pastebėjimas ir švelnus dėmesio sugrąžinimas į
+        kvėpavimą ar pasirinktą tašką.
       </p>
     </section>
     <section>
@@ -74,8 +74,8 @@
         <button data-min="60">60 min</button>
       </div>
       <div class="controls">
-        <button id="stop-btn">Stop</button>
-        <button id="mute-btn">Mute</button>
+        <button id="stop-btn">Stabdyti</button>
+        <button id="mute-btn">Išjungti garsą</button>
       </div>
       <div class="timer-display" id="timer-display"></div>
       <audio id="meditation-audio" preload="none">
@@ -83,14 +83,14 @@
           src="https://nextjs-tiksiandien.netlify.app/Indian_Flute_Meditation_Music.mp3"
           type="audio/mpeg"
         />
-        Your browser does not support the audio element.
+        Jūsų naršyklė nepalaiko audio elemento.
       </audio>
       <audio id="timer-sound" preload="auto">
         <source
           src="https://cdn.pixabay.com/audio/2022/07/26/audio_124bfae3c3.mp3"
           type="audio/mpeg"
         />
-        <!-- Free bell sound from Pixabay, you can replace with your own -->
+        <!-- Nemokamas varpelio garsas iš Pixabay, galite pakeisti savo -->
       </audio>
     </section>
 
@@ -115,18 +115,18 @@
         audio.pause();
         audio.currentTime = 0;
         audio.muted = muted;
-        audio.load(); // ensure not preloaded
+        audio.load();
         audio.play();
         remaining = minutes * 60;
-        timerDisplay.textContent = `Time left: ${formatTime(remaining)}`;
+        timerDisplay.textContent = `Liko laiko: ${formatTime(remaining)}`;
         timer = setInterval(() => {
           remaining--;
-          timerDisplay.textContent = `Time left: ${formatTime(remaining)}`;
+          timerDisplay.textContent = `Liko laiko: ${formatTime(remaining)}`;
           if (remaining <= 0) {
             clearInterval(timer);
             audio.pause();
             audio.currentTime = 0;
-            timerDisplay.textContent = "Session complete!";
+            timerDisplay.textContent = "Sesija baigta!";
             timerSound.play();
           }
         }, 1000);
@@ -142,7 +142,7 @@
       function muteAll() {
         muted = !muted;
         audio.muted = muted;
-        muteBtn.textContent = muted ? "Unmute" : "Mute";
+        muteBtn.textContent = muted ? "Įjungti garsą" : "Išjungti garsą";
       }
 
       document.querySelectorAll(".timer-buttons button").forEach((btn) => {
@@ -153,9 +153,6 @@
 
       stopBtn.addEventListener("click", stopAll);
       muteBtn.addEventListener("click", muteAll);
-
-      // If user changes timer, restart music and timer
-      // (handled by startTimer above)
     </script>
     <script src="js/menu.js"></script>
   </body>
