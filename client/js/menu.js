@@ -9,7 +9,8 @@ document.addEventListener("DOMContentLoaded", () => {
   <a href="meditation.html" class="w3-bar-item w3-button nav-link">Meditacija</a>
   <a href="help.html" class="w3-bar-item w3-button nav-link">Pagalba</a>
   <a href="reflection.html" class="w3-bar-item w3-button nav-link">Savianalizė</a>
-
+   <a href="beforesleep.html" class="w3-bar-item w3-button nav-link">Vakaro peržvalga</a>
+   <a href="gratitude.html" class="w3-bar-item w3-button nav-link">Dėkingumas</a>
   <!-- Desktop-only Prisijungti -->
   <a href="login.html" class="w3-bar-item w3-button w3-right w3-green w3-round login-topbar">Prisijungti</a>
 
@@ -30,6 +31,8 @@ document.addEventListener("DOMContentLoaded", () => {
     <a href="meditation.html" class="w3-bar-item w3-button">Meditacija</a>
     <a href="help.html" class="w3-bar-item w3-button">Pagalba</a>
     <a href="reflection.html" class="w3-bar-item w3-button">Savianalizė</a>
+    <a href="beforesleep.html" class="w3-bar-item w3-button">Vakaro peržvalga</a>
+    <a href="gratitude.html" class="w3-bar-item w3-button">Dėkingumas</a>
 
     <!-- Mobile-only Prisijungti -->
     <a href="login.html" class="w3-bar-item w3-button login-overlay">Prisijungti</a>
