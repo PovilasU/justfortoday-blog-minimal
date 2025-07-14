@@ -217,6 +217,50 @@
   }
 }
 
+@media (max-width: 599px) {
+  #nav-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: none; /* keep default hidden */
+    flex-direction: column;
+    background: var(--background);
+    padding: 4rem 1rem 1rem; /* leave space for nav */
+    box-shadow: none;
+    max-height: none;
+    overflow-y: auto;
+    align-items: center;
+    z-index: 9999;
+  }
+
+  #nav-menu.open {
+    display: flex; /* show menu when open */
+  }
+
+  #nav-close {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: var(--text);
+    z-index: 10000;
+  }
+
+  #nav-menu a {
+    font-size: 1.25rem;
+    margin: 1rem 0;
+    width: auto;
+    padding-bottom: 0;
+    border-bottom: none;
+    text-align: center;
+  }
+}
+
   </style>
 </head>
 <body>

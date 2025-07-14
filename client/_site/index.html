@@ -16,38 +16,31 @@
         <!-- Styles -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.min.css">
         <link rel="stylesheet" href="/css/style.css"/>
-        
-
-        
-
-        
-
-        
-        
-
+     
     </head>
     <body>
 
-
         <header>
             <h1>Just for Today</h1>
-                <nav>
+            <nav>
+                <div class="logo">🕊️ Just for Today</div>
                 <button id="nav-toggle" aria-label="Open navigation">☰</button>
                 <div id="nav-menu">
-                    <button id="nav-close" aria-label="Close navigation">✕</button>
-                    <a href="/">Home</a>
-                    <a href="/about/">About</a>
-                    <a href="/reflection/">Reflection</a>
-                    <a href="/gratitude/">Gratitude</a>
-                    <a href="/media/">Media</a>
-                    <a href="/login/">Login</a>
-                    <a href="/signup/">Signup</a>
-                    <a href="/todo/">To-Do</a>
-                    <a href="/meditation/">Meditation</a>
-                    <a href="/help/">Help</a>
-                    <a href="/beforesleep/">Before Sleep</a>
+                <button id="nav-close" aria-label="Close navigation">✕</button>
+                <a href="/">Home</a>
+                <a href="/about/">About</a>
+                <a href="/reflection/">Reflection</a>
+                <a href="/gratitude/">Gratitude</a>
+                <a href="/media/">Media</a>
+                <a href="/login/">Login</a>
+                <a href="/signup/">Signup</a>
+                <a href="/todo/">ToDo</a>
+                <a href="/meditation/">Meditation</a>
+                <a href="/help/">Help</a>
+                <a href="/beforesleep/">Before Sleep</a>
                 </div>
             </nav>
+
         </header>
 
         <main>
@@ -64,29 +57,28 @@
 
     </body>
     <script>
-            const toggle = document.getElementById("nav-toggle");
-            const closeBtn = document.getElementById("nav-close");
-            const menu = document.getElementById("nav-menu");
+         const toggle = document.getElementById("nav-toggle");
+    const closeBtn = document.getElementById("nav-close");
+    const menu = document.getElementById("nav-menu");
 
-        toggle.addEventListener("click", () => {
-        if (menu.style.display === "flex") {
-            menu.style.display = "none";
-        } else {
-            menu.style.display = "flex";
+    toggle.addEventListener("click", () => {
+      if (menu.style.display === "flex") {
+        menu.style.display = "none";
+      } else {
+        menu.style.display = "flex";
+      }
+    });
+
+    closeBtn.addEventListener("click", () => {
+      menu.style.display = "none";
+    });
+
+    document.querySelectorAll('#nav-menu a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (window.innerWidth < 600) {
+          menu.style.display = 'none';
         }
-        });
-
-
-            closeBtn.addEventListener("click", () => {
-            menu.style.display = "none";
-            });
-
-            document.querySelectorAll('#nav-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                if (window.innerWidth < 600) {
-                menu.style.display = 'none';
-                }
-            });
-            });
+      });
+    });
     </script>
 </html>
