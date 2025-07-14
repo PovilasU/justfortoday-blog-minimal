@@ -30,3 +30,13 @@ else
 fi
 
 log "==== Update complete ===="
+
+# Cleanup logs: keep only last 2 hours entries
+# Assumes log lines start with: [YYYY-MM-DD HH:MM:SS]
+awk -v cutoff="$(date -d '2 hours ago' '+%Y-%m-%d %H:%M:%S')" '
+  /^\[/ {
+    # Extract timestamp inside brackets
+    ts = substr($0, 2, 19)
+    if (ts >= cutoff) print $0
+  }
+' "$LOG_FILE" > "${LOG_FILE}.tmp" && mv "${LOG_FILE}.tmp" "$LOG_FILE"
