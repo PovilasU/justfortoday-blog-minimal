@@ -15,17 +15,37 @@
 
         <!-- Styles -->
         <link rel="stylesheet" href="/css/style.css"/>
+        
+
+        
+
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.min.css">
+        
+        
+
     </head>
     <body>
 
         <header>
             <h1>About</h1>
-            <nav aria-label="Main navigation">
-                <a href="/">Home</a> |
-        <a href="/about/">About</a> |
-        <a href="/reflection/">Reflection</a> |
-        <a href="/gratitude/">Gratitude</a>
+
+            <nav>
+                <button id="nav-toggle">☰ Menu</button>
+                <ul id="nav-menu" hidden>
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    <li>
+                        <a href="/about/">About</a>
+                    </li>
+                    <li>
+                        <a href="/reflection/">Reflection</a>
+                    </li>
+                </ul>
             </nav>
+
+            
         </header>
 
         <main>
@@ -41,4 +61,9 @@
         </footer>
 
     </body>
+    <script>
+        const btn = document.getElementById("nav-toggle");
+        const menu = document.getElementById("nav-menu");
+        btn.onclick = () => menu.hidden = !menu.hidden;
+    </script>
 </html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Just for Today</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.min.css" />
+  <style>
+    body {
+      padding-top: 4rem; /* prevent content under nav */
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: var(--background);
+      z-index: 1000;
+      padding: 1rem;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    #nav-toggle {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      display: block;
+    }
+
+   * {
+  box-sizing: border-box;
+}
+
+#nav-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  display: none;
+  flex-direction: column;
+  background: var(--background);
+  padding: 2rem 1rem 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  max-height: 60vh;
+  overflow-y: auto;
+   align-items: center; /* center links horizontally */
+}
+
+#nav-menu.open {
+  max-height: 500px;
+  padding: 2rem 1rem 1rem;
+}
+
+
+#nav-menu a {
+  margin: 0.5rem 0;    /* vertical spacing */
+  text-align: center;  /* center text inside each link */
+  width: 100%;         /* full width so each link is on its own line */
+  display: block;      /* ensure links behave like block elements */
+}
+
+
+#nav-close {
+  position: absolute;
+  top: 0.5rem;
+  right: 1.25rem; /* increased from 0.75rem */
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--text);
+}
+
+    #nav-menu a {
+      margin: 0.25rem 0;
+    }
+
+    @media (min-width: 600px) {
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      #nav-toggle {
+        display: none;
+      }
+
+      #nav-menu {
+        position: static;
+        display: flex !important;
+        flex-direction: row;
+        gap: 1rem;
+        background: none;
+        box-shadow: none;
+        padding: 0;
+        max-height: none;
+        overflow: visible;
+      }
+
+      #nav-close {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <button id="nav-toggle" aria-label="Open navigation">☰</button>
+    <div id="nav-menu">
+      <button id="nav-close" aria-label="Close navigation">✕</button>
+      <a href="/">Home</a>
+      <a href="/about/">About</a>
+      <a href="/reflection/">Reflection</a>
+      <a href="/gratitude/">Gratitude</a>
+      <a href="/media/">Media</a>
+      <a href="/login/">Login</a>
+      <a href="/signup/">Signup</a>
+      <a href="/todo/">To-Do</a>
+      <a href="/meditation/">Meditation</a>
+      <a href="/help/">Help</a>
+      <a href="/beforesleep/">Before Sleep</a>
+    </div>
+  </nav>
+
+  <main>
+    <h1>Welcome to Just for Today</h1>
+    <p>This site supports a clean mobile-friendly nav bar using Water.css and minimal JavaScript.</p>
+  </main>
+
+  <script>
+    const toggle = document.getElementById("nav-toggle");
+    const closeBtn = document.getElementById("nav-close");
+    const menu = document.getElementById("nav-menu");
+
+   toggle.addEventListener("click", () => {
+  if (menu.style.display === "flex") {
+    menu.style.display = "none";
+  } else {
+    menu.style.display = "flex";
+  }
+});
+
+
+    closeBtn.addEventListener("click", () => {
+      menu.style.display = "none";
+    });
+
+    document.querySelectorAll('#nav-menu a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (window.innerWidth < 600) {
+          menu.style.display = 'none';
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
