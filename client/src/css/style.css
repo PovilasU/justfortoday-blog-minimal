@@ -1,13 +1,98 @@
+ body {
+      padding-top: 4rem; /* prevent content under nav */
+    }
 
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: var(--background);
+      z-index: 1000;
+      padding: 1rem;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
 
-#nav-toggle {
+    #nav-toggle {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      display: block;
+    }
+
+   * {
+  box-sizing: border-box;
+}
+
+#nav-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
   display: none;
+  flex-direction: column;
+  background: var(--background);
+  padding: 2rem 1rem 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  max-height: 60vh;
+  overflow-y: auto;
+   align-items: center; /* center links horizontally */
 }
-@media (max-width: 600px) {
-  #nav-toggle {
-    display: block;
-  }
-  #nav-menu {
-    display: block;
-  }
+
+#nav-menu.open {
+  max-height: 500px;
+  padding: 2rem 1rem 1rem;
 }
+
+
+#nav-menu a {
+  margin: 0.5rem 0;    /* vertical spacing */
+  text-align: center;  /* center text inside each link */
+  width: 100%;         /* full width so each link is on its own line */
+  display: block;      /* ensure links behave like block elements */
+}
+
+
+#nav-close {
+  position: absolute;
+  top: 0.5rem;
+  right: 1.25rem; /* increased from 0.75rem */
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--text);
+}
+
+    #nav-menu a {
+      margin: 0.25rem 0;
+    }
+
+    @media (min-width: 600px) {
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      #nav-toggle {
+        display: none;
+      }
+
+      #nav-menu {
+        position: static;
+        display: flex !important;
+        flex-direction: row;
+        gap: 1rem;
+        background: none;
+        box-shadow: none;
+        padding: 0;
+        max-height: none;
+        overflow: visible;
+      }
+
+      #nav-close {
+        display: none;
+      }
+    }

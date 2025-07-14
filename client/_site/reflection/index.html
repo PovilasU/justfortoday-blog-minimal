@@ -14,38 +14,40 @@
         <link rel="apple-touch-icon" href="/apple-touch-icon.png"/>
 
         <!-- Styles -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.min.css">
         <link rel="stylesheet" href="/css/style.css"/>
         
 
         
 
         
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.min.css">
+
         
         
 
     </head>
     <body>
 
+
         <header>
             <h1>Reflection</h1>
-
-            <nav>
-                <button id="nav-toggle">☰ Menu</button>
-                <ul id="nav-menu" hidden>
-                    <li>
-                        <a href="/">Home</a>
-                    </li>
-                    <li>
-                        <a href="/about/">About</a>
-                    </li>
-                    <li>
-                        <a href="/reflection/">Reflection</a>
-                    </li>
-                </ul>
+                <nav>
+                <button id="nav-toggle" aria-label="Open navigation">☰</button>
+                <div id="nav-menu">
+                    <button id="nav-close" aria-label="Close navigation">✕</button>
+                    <a href="/">Home</a>
+                    <a href="/about/">About</a>
+                    <a href="/reflection/">Reflection</a>
+                    <a href="/gratitude/">Gratitude</a>
+                    <a href="/media/">Media</a>
+                    <a href="/login/">Login</a>
+                    <a href="/signup/">Signup</a>
+                    <a href="/todo/">To-Do</a>
+                    <a href="/meditation/">Meditation</a>
+                    <a href="/help/">Help</a>
+                    <a href="/beforesleep/">Before Sleep</a>
+                </div>
             </nav>
-
-            
         </header>
 
         <main>
@@ -62,8 +64,29 @@
 
     </body>
     <script>
-        const btn = document.getElementById("nav-toggle");
-        const menu = document.getElementById("nav-menu");
-        btn.onclick = () => menu.hidden = !menu.hidden;
+            const toggle = document.getElementById("nav-toggle");
+            const closeBtn = document.getElementById("nav-close");
+            const menu = document.getElementById("nav-menu");
+
+        toggle.addEventListener("click", () => {
+        if (menu.style.display === "flex") {
+            menu.style.display = "none";
+        } else {
+            menu.style.display = "flex";
+        }
+        });
+
+
+            closeBtn.addEventListener("click", () => {
+            menu.style.display = "none";
+            });
+
+            document.querySelectorAll('#nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth < 600) {
+                menu.style.display = 'none';
+                }
+            });
+            });
     </script>
 </html>
