@@ -11,6 +11,7 @@
 
         <!-- Favicon -->
         <link rel="icon" href="/favicon.ico" type="image/x-icon"/>
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png"/>
 
         <!-- Styles -->
         <link rel="stylesheet" href="/css/style.css"/>
@@ -19,17 +20,17 @@
 
         <header>
             <h1>{{ title }}</h1>
-            <nav>
+            <nav aria-label="Main navigation">
                 <a href="/">Home</a> |
-      <a href="/about/">About</a> |
-      <a href="/reflection/">Reflection</a> |
-      <a href="/gratitude/">Gratitude</a>
+        <a href="/about/">About</a> |
+        <a href="/reflection/">Reflection</a> |
+        <a href="/gratitude/">Gratitude</a>
             </nav>
         </header>
 
-        <section>
+        <main>
             {{ content | safe }}
-        </section>
+        </main>
 
         <footer>
             <p>&copy; <script>
