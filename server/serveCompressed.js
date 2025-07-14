@@ -2,7 +2,9 @@ const express = require("express");
 const path = require("path");
 const fs = require("fs");
 
-const distDir = path.resolve(__dirname, "../client/dist");
+//const distDir = path.resolve(__dirname, "../client/dist");
+
+const distDir = path.resolve(__dirname, "../client/_site");
 
 function serveCompressed(req, res, next) {
   const acceptEncoding = req.headers["accept-encoding"] || "";
