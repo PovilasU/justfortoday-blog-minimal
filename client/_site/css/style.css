@@ -252,3 +252,14 @@
     text-align: center;
   }
 }
+
+      /* Paprasti stiliai nuotraukos vietai */
+      .profile-pic {
+        width: 150px;
+        height: 150px;
+        background-color: #ccc;
+        border-radius: 50%;
+        display: block;
+        margin: 20px auto;
+        object-fit: cover;
+      }
