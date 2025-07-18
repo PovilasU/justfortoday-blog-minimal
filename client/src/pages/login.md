@@ -4,14 +4,43 @@ title: Prisijungimas
 permalink: /login/
 ---
 
-    <form action="/login" method="POST">
-      <label for="email">El. paštas:</label>
-      <input type="email" id="email" name="email" required />
+<h2>Prisijungimas</h2>
 
-      <label for="password">Slaptažodis:</label>
-      <input type="password" id="password" name="password" required />
+<form id="login-form">
+  <label for="username">Vartotojo vardas:</label><br/>
+  <input type="text" id="username" name="username" required /><br/>
 
-      <button type="submit">Prisijungti</button>
-    </form>
+<label for="password">Slaptažodis:</label><br/>
+<input type="password" id="password" name="password" required /><br/>
 
-    <p>Neturite paskyros? <a href="signup.html">Registruokitės čia</a></p>
+<button type="submit">Prisijungti</button>
+
+</form>
+
+<div id="login-message" style="color:red; margin-top:1rem;"></div>
+
+<script>
+  document.getElementById("login-form").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const username = e.target.username.value;
+    const password = e.target.password.value;
+
+    try {
+      const res = await fetch("/api/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, password })
+      });
+
+      if (res.ok) {
+        // Redirect on successful login (to homepage or profile)
+        window.location.href = "/";
+      } else {
+        const text = await res.text();
+        document.getElementById("login-message").textContent = text || "Klaida prisijungiant";
+      }
+    } catch (err) {
+      document.getElementById("login-message").textContent = "Tinklo klaida";
+    }
+  });
+</script>

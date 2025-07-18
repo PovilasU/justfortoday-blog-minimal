@@ -22,41 +22,43 @@
     </head>
     <body>
 
-        <header>
-     
-          <nav>
-            <div class="logo"><a href="/">🕊️ TikŠiandien </a></div>
-            <button id="nav-toggle" aria-label="Open navigation">☰</button>
-            <div id="nav-menu">
-              <button id="nav-close" aria-label="Close navigation">✕</button>
+<header>
+  <nav>
+    <div class="logo"><a href="/">🕊️ TikŠiandien</a></div>
+    <button id="nav-toggle" aria-label="Open navigation">☰</button>
+    <div id="nav-menu">
+      <button id="nav-close" aria-label="Close navigation">✕</button>
 
-              <!-- Core / Intro -->
-              <a href="/about/">Apie</a>
-              <a href="/help/">Pagalba</a>
+      <!-- Core / Intro -->
+      <a href="/about/">Apie</a>
+      <a href="/help/">Pagalba</a>
 
-              <!-- Daily Practice -->
-              <a href="/reflection/">Savianalizė</a>
-              <a href="/gratitude/">Dėkingumas</a>
-              <a href="/todo/">Užduotys</a>
-              <a href="/meditation/">Meditacija</a>
-              <a href="/beforesleep/">Vakaro peržvalga</a>
+      <!-- Daily Practice -->
+      <a href="/reflection/">Savianalizė</a>
+      <a href="/gratitude/">Dėkingumas</a>
+      <a href="/todo/">Užduotys</a>
+      <a href="/meditation/">Meditacija</a>
+      <a href="/beforesleep/">Vakaro peržvalga</a>
 
-              <!-- Media -->
-              <a href="/media/">Medijos</a>
+      <!-- Media -->
+      <a href="/media/">Medijos</a>
 
-              <!-- User Auth -->
-              <a href="/login/">Prisijungti</a>
-               <!-- <a href="/signup/">Registracija</a> -->   
-            </div>
-          </nav>
+      <!-- User Auth -->
+      <div id="auth-links">
+        <!-- These links will toggle dynamically -->
+        <a href="/login/" id="login-link">Prisijungti</a>
+        <a href="/signup/" id="signup-link">Registracija</a>
+        <a href="#" id="logout-link" style="display:none;">Atsijungti</a>
+        <span id="welcome-msg" style="display:none;"></span>
+      </div>
+    </div>
+  </nav>
 
-                 <h1>Dienos planas</h1>
+  <h1>Dienos planas</h1>
+</header>
 
-
-        </header>
-
-        <main>
-            <p>
+<main>
+  <p>
   Tiesiog šiandien skirk šiek tiek laiko savo dienos planavimui. Aiškūs
   tikslai ir užduočių sąrašas padės išlaikyti dėmesį, sumažinti stresą ir
   žingsnis po žingsnio siekti savo tikslų. Atmink – kiekviena diena yra
@@ -182,37 +184,67 @@
   updateList();
 </script>
 
-        </main>
+</main>
 
-        <footer>
-       <p>&copy; <script>document.write(new Date().getFullYear())</script> TikŠiandien</p>
+<footer>
+  <p>&copy; <script>document.write(new Date().getFullYear())</script> TikŠiandien</p>
+</footer>
 
-        </footer>
+<script>
+  // Navigation menu toggle (your existing code)
+  const toggle = document.getElementById("nav-toggle");
+  const closeBtn = document.getElementById("nav-close");
+  const menu = document.getElementById("nav-menu");
 
-    </body>
-    <script>
-         const toggle = document.getElementById("nav-toggle");
-    const closeBtn = document.getElementById("nav-close");
-    const menu = document.getElementById("nav-menu");
+  toggle.addEventListener("click", () => {
+    menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+  });
 
-    toggle.addEventListener("click", () => {
-      if (menu.style.display === "flex") {
-        menu.style.display = "none";
-      } else {
-        menu.style.display = "flex";
+  closeBtn.addEventListener("click", () => {
+    menu.style.display = "none";
+  });
+
+  document.querySelectorAll('#nav-menu a').forEach(link => {
+    link.addEventListener('click', () => {
+      if (window.innerWidth < 600) {
+        menu.style.display = 'none';
       }
     });
+  });
 
-    closeBtn.addEventListener("click", () => {
-      menu.style.display = "none";
-    });
+  // AUTH UI logic
+  async function checkAuth() {
+    try {
+      const res = await fetch("/api/profile");
+      if (res.ok) {
+        const username = await res.text();
+        document.getElementById("login-link").style.display = "none";
+        document.getElementById("signup-link").style.display = "none";
 
-    document.querySelectorAll('#nav-menu a').forEach(link => {
-      link.addEventListener('click', () => {
-        if (window.innerWidth < 600) {
-          menu.style.display = 'none';
-        }
-      });
-    });
-    </script>
+        document.getElementById("logout-link").style.display = "inline";
+        const welcomeMsg = document.getElementById("welcome-msg");
+        welcomeMsg.style.display = "inline";
+        welcomeMsg.textContent = `Sveiki, ${username}`;
+      } else {
+        throw new Error("Not logged in");
+      }
+    } catch {
+      // Not logged in
+      document.getElementById("login-link").style.display = "inline";
+      document.getElementById("signup-link").style.display = "inline";
+      document.getElementById("logout-link").style.display = "none";
+      document.getElementById("welcome-msg").style.display = "none";
+    }
+  }
+
+  document.getElementById("logout-link").addEventListener("click", async (e) => {
+    e.preventDefault();
+    await fetch("/api/logout", { method: "POST" });
+    checkAuth();
+  });
+
+  checkAuth();
+</script>
+
+</body>
 </html>

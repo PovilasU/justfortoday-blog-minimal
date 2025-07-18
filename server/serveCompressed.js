@@ -1,14 +1,15 @@
+// serveCompressed.js
 const express = require("express");
 const path = require("path");
 const fs = require("fs");
 
-//const distDir = path.resolve(__dirname, "../client/dist");
-
 const distDir = path.resolve(__dirname, "../client/_site");
 
-function serveCompressed(req, res, next) {
+const router = express.Router();
+
+router.use((req, res, next) => {
   const acceptEncoding = req.headers["accept-encoding"] || "";
-  let urlPath = req.path; // Use let instead of const
+  let urlPath = req.path;
   if (urlPath === "/") urlPath = "/index.html";
   const fileBase = path.join(distDir, urlPath);
 
@@ -29,7 +30,7 @@ function serveCompressed(req, res, next) {
     }
   }
   next();
-}
+});
 
 function getMimeType(file) {
   if (file.endsWith(".js")) return "application/javascript";
@@ -38,4 +39,5 @@ function getMimeType(file) {
   return "application/octet-stream";
 }
 
-module.exports = serveCompressed;
+module.exports = router;
+
